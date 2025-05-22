@@ -21,13 +21,10 @@ const DashboardContent: React.FC = () => {
       <FilterControls onFilterChange={handleFilterChange} />
       <MetricCards />
       <PopulationDensity />
-      <div className="mt-30 flex flex-col lg:flex-row gap-6">
-        <div className="flex-1">
-          <SchoolFacilitiesChart />
-        </div>
-        <div className="flex-1">
-          <Heatmap />
-        </div>
+
+      <div className="mt-25 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <SchoolFacilitiesChart />
+        <Heatmap />
       </div>
     </div>
   );
