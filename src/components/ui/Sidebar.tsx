@@ -1,4 +1,3 @@
-
 import { FC, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -131,11 +130,11 @@ const Sidebar: FC = () => {
         <Image
           src="/images/logo.png"
           alt="Logo"
-          width={32}
-          height={32}
-          className="object-contain"
+          width={50}
+          height={50}
+          className="object-contain ml-2 mr-2"
         />
-        <span className="font-bold text-lg text-[#8E191C] ml-2">
+        <span className="font-bold text-[14px] text-[#8E191C]">
           Sistem Informasi Kelurahan Cantik
         </span>
       </div>

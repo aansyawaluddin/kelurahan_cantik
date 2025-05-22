@@ -47,7 +47,7 @@ const SummaryBox = ({
   </div>
 );
 
-export default function KepadatanPenduduk() {
+export default function PopulationDensity() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-full">
       <Card className="col-span-2 h-full">

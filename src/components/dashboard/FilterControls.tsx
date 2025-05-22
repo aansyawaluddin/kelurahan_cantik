@@ -30,9 +30,6 @@ const FilterControls: React.FC<FilterProps> = ({ onFilterChange }) => {
   return (
     <div className="flex space-x-4 items-end">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Periode
-        </label>
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -49,9 +46,6 @@ const FilterControls: React.FC<FilterProps> = ({ onFilterChange }) => {
         </Popover>
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Kecamatan
-        </label>
         <Input
           placeholder="Kecamatan"
           className="w-44"
@@ -63,9 +57,6 @@ const FilterControls: React.FC<FilterProps> = ({ onFilterChange }) => {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Kelurahan
-        </label>
         <Input
           placeholder="Kelurahan"
           className="w-44"
