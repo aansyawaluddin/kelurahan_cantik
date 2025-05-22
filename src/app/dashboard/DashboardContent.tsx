@@ -1,6 +1,7 @@
 import React from "react";
 import FilterControls from "@/components/dashboard/FilterControls";
 import MetricCards from "@/components/dashboard/MetricCards";
+import KepadatanPenduduk from "@/components/dashboard/PopulationDensityByRW";
 
 const DashboardContent: React.FC = () => {
   const handleFilterChange = (filters: {
@@ -17,6 +18,7 @@ const DashboardContent: React.FC = () => {
       <h1 className="text-2xl font-semibold text-black">Selamat Datang!</h1>
       <FilterControls onFilterChange={handleFilterChange} />
       <MetricCards />
+      <KepadatanPenduduk />
     </div>
   );
 };
