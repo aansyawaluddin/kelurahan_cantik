@@ -35,7 +35,7 @@ function SchoolFacilitiesChart() {
             >
               <XAxis dataKey="level" />
               <YAxis />
-              <Tooltip />
+              <Tooltip cursor={false} />
               <Legend />
               <Bar dataKey="2022/2023" fill="#8B0000" />
               <Bar dataKey="2023/2024" fill="#DAA520" />
