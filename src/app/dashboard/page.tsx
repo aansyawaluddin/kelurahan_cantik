@@ -1,6 +1,6 @@
 "use client";
 import Sidebar from "@/components/ui/Sidebar";
-import Header from "../../components/dashboard/Header";
+import Header from "../../components/ui/Header";
 import DashboardContent from "./DashboardContent";
 
 export default function Home() {

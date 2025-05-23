@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import YearPicker from "@/components/ui/yearPicker";
 import { Input } from "@/components/ui/input";
+import RwPicker from "@/components/ui/RwPicker";
 import {
   Popover,
   PopoverTrigger,
@@ -14,6 +16,7 @@ export interface FilterProps {
     year: number | null;
     kecamatan: string;
     kelurahan: string;
+    rw: string;
   }) => void;
 }
 
@@ -21,14 +24,20 @@ const FilterControls: React.FC<FilterProps> = ({ onFilterChange }) => {
   const [year, setYear] = useState<number | null>(null);
   const [kecamatan, setKecamatan] = useState("");
   const [kelurahan, setKelurahan] = useState("");
+  const [rw, setRw] = useState("Semua RW");
 
   const handleYearChange = (y: number) => {
     setYear(y);
-    onFilterChange({ year: y, kecamatan, kelurahan });
+    onFilterChange({ year: y, kecamatan, kelurahan, rw });
+  };
+
+  const handleRwChange = (selectedRw: string) => {
+    setRw(selectedRw);
+    onFilterChange({ year, kecamatan, kelurahan, rw: selectedRw });
   };
 
   return (
-    <div className="flex space-x-4 items-end">
+    <div className="flex space-x-4 justify-end">
       {/* Periode */}
       <Popover>
         <PopoverTrigger asChild>
@@ -45,7 +54,7 @@ const FilterControls: React.FC<FilterProps> = ({ onFilterChange }) => {
         </PopoverContent>
       </Popover>
 
-      {/* Kecamatan dengan icon */}
+      {/* Kecamatan */}
       <div className="relative w-44">
         <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
           <Search className="w-4 h-4 text-gray-400" />
@@ -55,13 +64,14 @@ const FilterControls: React.FC<FilterProps> = ({ onFilterChange }) => {
           className="pl-10"
           value={kecamatan}
           onChange={(e) => {
-            setKecamatan(e.target.value);
-            onFilterChange({ year, kecamatan: e.target.value, kelurahan });
+            const value = e.target.value;
+            setKecamatan(value);
+            onFilterChange({ year, kecamatan: value, kelurahan, rw });
           }}
         />
       </div>
 
-      {/* Kelurahan dengan icon */}
+      {/* Kelurahan */}
       <div className="relative w-44">
         <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
           <Search className="w-4 h-4 text-gray-400" />
@@ -71,11 +81,15 @@ const FilterControls: React.FC<FilterProps> = ({ onFilterChange }) => {
           className="pl-10"
           value={kelurahan}
           onChange={(e) => {
-            setKelurahan(e.target.value);
-            onFilterChange({ year, kecamatan, kelurahan: e.target.value });
+            const value = e.target.value;
+            setKelurahan(value);
+            onFilterChange({ year, kecamatan, kelurahan: value, rw });
           }}
         />
       </div>
+
+      {/* RW Picker */}
+      <RwPicker selectedRw={rw} onSelectRw={handleRwChange} />
     </div>
   );
 };

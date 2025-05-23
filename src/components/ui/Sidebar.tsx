@@ -1,12 +1,15 @@
+// components/Sidebar.tsx
 import { FC, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 
-const menu = [
+// ▶️ export menu supaya bisa dipakai di Header.tsx
+export const menu = [
   { title: "Dashboard", path: "/dashboard", icon: "/icon/dashboard.png" },
   {
     title: "Pemerintahan",
+    path: "/pemerintahan",
     icon: "/icon/government.png",
     children: [
       { title: "Jumlah RT", path: "/pemerintahan/rt" },
@@ -15,6 +18,7 @@ const menu = [
   },
   {
     title: "Kependudukan",
+    path: "/kependudukan",
     icon: "/icon/people.png",
     children: [
       { title: "Distribusi Penduduk", path: "/kependudukan/distribusi" },
@@ -23,6 +27,7 @@ const menu = [
   },
   {
     title: "Pendidikan",
+    path: "/pendidikan",
     icon: "/icon/graduation.png",
     children: [
       { title: "RW yang Memiliki Sekolah", path: "/pendidikan/sekolah" },
@@ -33,6 +38,7 @@ const menu = [
   },
   {
     title: "Kesehatan",
+    path: "/kesehatan",
     icon: "/icon/pharmacy.png",
     children: [
       { title: "RW yang Memiliki Puskesmas", path: "/kesehatan/puskesmas" },
@@ -41,6 +47,7 @@ const menu = [
   },
   {
     title: "Perumahan dan Lingkungan",
+    path: "/perumahan",
     icon: "/icon/home.png",
     children: [
       { title: "RW menurut Sumber Air Minum", path: "/perumahan/air" },
@@ -58,6 +65,7 @@ const menu = [
   },
   {
     title: "Agama dan Sosial",
+    path: "/agama",
     icon: "/icon/handshake.png",
     children: [
       { title: "Jumlah Tempat Ibadah", path: "/agama/tempat-ibadah" },
@@ -81,6 +89,7 @@ const menu = [
   },
   {
     title: "Pariwisata, Transportasi dan Komunikasi",
+    path: "/pariwisata",
     icon: "/icon/worldwide.png",
     children: [
       { title: "Jumlah Sarana Akomodasi", path: "/pariwisata/akomodasi" },
@@ -108,6 +117,7 @@ const menu = [
   },
   {
     title: "Ekonomi",
+    path: "/ekonomi",
     icon: "/icon/wallet.png",
     children: [
       { title: "Jumlah Bank", path: "/ekonomi/bank" },
@@ -119,10 +129,8 @@ const menu = [
 
 const Sidebar: FC = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-
-  const toggleMenu = (title: string) => {
+  const toggleMenu = (title: string) =>
     setOpenMenu((prev) => (prev === title ? null : title));
-  };
 
   return (
     <aside className="min-h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-auto relative">
@@ -144,11 +152,11 @@ const Sidebar: FC = () => {
             <li key={item.title} className="mb-3">
               {item.children ? (
                 <>
-                  <button
-                    onClick={() => toggleMenu(item.title)}
-                    className="w-full flex items-start justify-between px-2 py-2 hover:bg-gray-100 rounded text-left"
-                  >
-                    <div className="flex items-start gap-2">
+                  <div className="flex items-start justify-between px-2 py-2 hover:bg-gray-100 rounded text-left">
+                    <Link
+                      href={item.path}
+                      className="flex items-start gap-2 flex-grow"
+                    >
                       <Image
                         src={item.icon}
                         alt={`${item.title} icon`}
@@ -165,20 +173,22 @@ const Sidebar: FC = () => {
                       >
                         {item.title}
                       </span>
-                    </div>
-                    <div className="mt-1">
+                    </Link>
+                    <button
+                      onClick={() => toggleMenu(item.title)}
+                      className="mt-1 p-1"
+                    >
                       {openMenu === item.title ? (
                         <ChevronUpIcon className="w-4 h-4 text-[#1CA6A9]" />
                       ) : (
                         <ChevronDownIcon className="w-4 h-4 text-[#1CA6A9]" />
                       )}
-                    </div>
-                  </button>
-
+                    </button>
+                  </div>
                   {openMenu === item.title && (
                     <ul className="mt-1 ml-6 pl-4 border-l-2 border-[#CFF2F2] bg-white">
                       {item.children.map((sub) => (
-                        <li key={sub.path} className=" pl-2 py-1">
+                        <li key={sub.path} className="pl-2 py-1">
                           <Link
                             href={sub.path}
                             className="text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200"
@@ -200,7 +210,7 @@ const Sidebar: FC = () => {
                     className="mr-2 icon-recolor"
                   />
                   <Link
-                    href={item.path!}
+                    href={item.path}
                     className="text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200"
                   >
                     {item.title}
