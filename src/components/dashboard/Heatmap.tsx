@@ -66,21 +66,23 @@ function CustomizedTreemapContent(props: CustomTreemapProps) {
 
 export default function PopulationTreemap() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Jumlah Penduduk tiap RW</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
-          <Treemap
-            data={populationData}
-            dataKey="value"
-            aspectRatio={4 / 3}
-            stroke="#fff"
-            content={<CustomizedTreemapContent />} 
-          />
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+    <div className="w-1/2 mx-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Jumlah Penduduk tiap RW</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <Treemap
+              data={populationData}
+              dataKey="value"
+              aspectRatio={4 / 3}
+              stroke="#fff"
+              content={<CustomizedTreemapContent />}
+            />
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

@@ -20,28 +20,30 @@ const schoolData = [
 
 function SchoolFacilitiesChart() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          Jumlah Fasilitas Sekolah Berdasarkan Tingkat Pendidikan
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="px-0">
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart
-            data={schoolData}
-            margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-          >
-            <XAxis dataKey="level" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="2022/2023" fill="#8B0000" />
-            <Bar dataKey="2023/2024" fill="#DAA520" />
-          </BarChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+    <div className="w-1/2 mx-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            Jumlah Fasilitas Sekolah Berdasarkan Tingkat Pendidikan
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="px-0">
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart
+              data={schoolData}
+              margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+            >
+              <XAxis dataKey="level" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="2022/2023" fill="#8B0000" />
+              <Bar dataKey="2023/2024" fill="#DAA520" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
