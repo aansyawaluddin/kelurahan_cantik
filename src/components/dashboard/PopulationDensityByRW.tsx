@@ -64,7 +64,7 @@ export default function PopulationDensity() {
             >
               <XAxis type="number" />
               <YAxis type="category" dataKey="rw" />
-              <Tooltip />
+              <Tooltip cursor={false} />
               <Legend verticalAlign="bottom" height={20} />
               <Bar
                 dataKey="kepadatan"
