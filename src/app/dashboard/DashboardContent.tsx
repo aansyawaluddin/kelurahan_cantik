@@ -16,13 +16,13 @@ const DashboardContent: React.FC = () => {
   };
 
   return (
-    <div className="justirify-start flex flex-col p-4 space-y-6 overflow-y-auto border rounded-lg border-gray-200">
+    <div className=" p-4 space-y-6 border h-full rounded-lg border-gray-200">
       <h1 className="text-2xl font-semibold text-black">Selamat Datang!</h1>
       <FilterControls onFilterChange={handleFilterChange} />
       <MetricCards />
       <PopulationDensity />
 
-      <div className="flex justify-between w-full">
+      <div className="flex justify-around w-full">
         <SchoolFacilitiesChart />
         <Heatmap />
       </div>

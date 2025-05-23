@@ -72,7 +72,7 @@ export default function PopulationTreemap() {
           <CardTitle>Jumlah Penduduk tiap RW</CardTitle>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={315}>
             <Treemap
               data={populationData}
               dataKey="value"
