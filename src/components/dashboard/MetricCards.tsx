@@ -6,7 +6,7 @@ const cardsData = [
     title: "Luas Wilayah",
     value: (
       <>
-        <span>
+        <span className="text-[40px]">
           1.180 m<sup>2</sup>
         </span>
       </>
@@ -15,12 +15,58 @@ const cardsData = [
   },
   {
     title: "Pemerintahan",
-    value: "10 RW  57 RT",
+
+    value: (
+      <div className="flex flex-col">
+        <span className="text-sm font-medium mb-1">Total</span>
+        <div className="flex justify-between">
+          <span className="text-[20px]">10 RW</span>
+          <span className="text-[20px]">57 RT</span>
+        </div>
+      </div>
+    ),
     iconSrc: "/icon/government.png",
   },
-  { title: "Kependudukan", value: "19.053", iconSrc: "/icon/people.png" },
-  { title: "Pendidikan", value: "35", iconSrc: "/icon/graduation.png" },
-  { title: "Kesehatan", value: "6", iconSrc: "/icon/pharmacy.png" },
+  {
+    title: "Kependudukan",
+    value: (
+      <div className="flex flex-col">
+        <span className="text-sm font-medium mb-1">Total Penduduk</span>
+        <div>
+          <span className="text-[20px]">19.053</span>
+        </div>
+      </div>
+    ),
+    iconSrc: "/icon/people.png",
+  },
+  {
+    title: "Pendidikan",
+    value: (
+      <div className="flex flex-col">
+        <span className="text-sm font-medium mb-1">
+          Total Fasilitas Sekolah
+        </span>
+        <div>
+          <span className="text-[20px]">35</span>
+        </div>
+      </div>
+    ),
+    iconSrc: "/icon/graduation.png",
+  },
+  {
+    title: "Kesehatan",
+    value: (
+      <div className="flex flex-col">
+        <span className="text-sm font-medium mb-1">
+          Total Fasilitas Kesehatan
+        </span>
+        <div>
+          <span className="text-[20px]">6</span>
+        </div>
+      </div>
+    ),
+    iconSrc: "/icon/pharmacy.png",
+  },
 ];
 
 const MetricCards: React.FC = () => (

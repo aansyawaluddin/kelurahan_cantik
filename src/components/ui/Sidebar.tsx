@@ -133,7 +133,7 @@ const Sidebar: FC = () => {
     setOpenMenu((prev) => (prev === title ? null : title));
 
   return (
-    <aside className="min-h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-auto relative">
+    <aside className="h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-scroll fixed ">
       <div className="mb-8 flex items-center">
         <Image
           src="/images/logo.png"

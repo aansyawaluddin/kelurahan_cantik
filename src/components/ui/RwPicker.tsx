@@ -10,6 +10,8 @@ import { ChevronDown } from "lucide-react";
 interface RwControlProps {
   selectedRw: string;
   onSelectRw: (rw: string) => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
 const RW_OPTIONS = [
@@ -26,8 +28,13 @@ const RW_OPTIONS = [
   "RW 10",
 ];
 
-const RwPicker: React.FC<RwControlProps> = ({ selectedRw, onSelectRw }) => (
-  <Popover>
+const RwPicker: React.FC<RwControlProps> = ({
+  selectedRw,
+  onSelectRw,
+  open,
+  onOpenChange,
+}) => (
+  <Popover open={open} onOpenChange={onOpenChange}>
     <PopoverTrigger asChild>
       <Button variant="outline" className="w-40 justify-between font-normal">
         <span>{selectedRw || "Level"}</span>
@@ -39,7 +46,10 @@ const RwPicker: React.FC<RwControlProps> = ({ selectedRw, onSelectRw }) => (
         {RW_OPTIONS.map((rw) => (
           <button
             key={rw}
-            onClick={() => onSelectRw(rw)}
+            onClick={() => {
+              onSelectRw(rw);
+              onOpenChange(false); 
+            }}
             className="w-full text-left px-4 py-2 hover:bg-gray-100"
           >
             {rw}

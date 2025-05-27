@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex h-full bg-white">
       <Sidebar />
-      <div className="flex-1 flex flex-col p-6 h-full space-y-6">
+      <div className="ml-64 flex-1 flex flex-col h-full p-6 h-full space-y-6 overflow-auto">
         <Header />
         <DashboardContent />
       </div>
