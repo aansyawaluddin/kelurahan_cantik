@@ -1,10 +1,8 @@
-// components/Sidebar.tsx
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 
-// ▶️ export menu supaya bisa dipakai di Header.tsx
 export const menu = [
   { title: "Dashboard", path: "/dashboard", icon: "/icon/dashboard.png" },
   {
@@ -129,11 +127,26 @@ export const menu = [
 
 const Sidebar: FC = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [currentPath, setCurrentPath] = useState<string>("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname;
+      setCurrentPath(path);
+      const activeParent = menu.find((item) =>
+        item.children?.some((child) => child.path === path)
+      );
+      if (activeParent) {
+        setOpenMenu(activeParent.title);
+      }
+    }
+  }, []);
+
   const toggleMenu = (title: string) =>
     setOpenMenu((prev) => (prev === title ? null : title));
 
   return (
-    <aside className="h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-scroll fixed ">
+    <aside className="h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-scroll fixed">
       <div className="mb-8 flex items-center">
         <Image
           src="/images/logo.png"
@@ -191,7 +204,9 @@ const Sidebar: FC = () => {
                         <li key={sub.path} className="pl-2 py-1">
                           <Link
                             href={sub.path}
-                            className="text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200"
+                            className={`text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200 ${
+                              currentPath === sub.path ? "font-semibold" : ""
+                            }`}
                           >
                             {sub.title}
                           </Link>
@@ -211,7 +226,9 @@ const Sidebar: FC = () => {
                   />
                   <Link
                     href={item.path}
-                    className="text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200"
+                    className={`text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200 ${
+                      currentPath === item.path ? "font-semibold" : ""
+                    }`}
                   >
                     {item.title}
                   </Link>

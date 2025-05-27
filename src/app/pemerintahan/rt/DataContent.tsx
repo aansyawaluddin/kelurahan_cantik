@@ -1,0 +1,74 @@
+import React, { useState } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import FilterControls from "@/components/pemerintahan/FilterControls";
+import DataToolbar from "@/components/pemerintahan/DataToolbar";
+import DataPlaceholder from "@/components/pemerintahan/DataPlaceholder";
+import VisualisasiPlaceholder from "@/components/pemerintahan/visualizationPlaceHolder";
+import RtByRwTable, {
+  sampleRtData,
+} from "@/components/pemerintahan/rt/RtByRwTable";
+
+const DataPage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<"data" | "visualisasi">("data");
+  const [filters, setFilters] = useState({
+    year: null,
+    kecamatan: "",
+    kelurahan: "",
+    rw: "Semua RW",
+  });
+
+  const handleTabChange = (value: string) => setActiveTab(value as any);
+  const handleFilterChange = (newFilters: any) => setFilters(newFilters);
+  const handleExport = () => console.log("Export data dengan filter:", filters);
+  const handleInput = () => console.log("Navigasi ke halaman input");
+
+  // prepare filtered data: show all when no filters applied
+  const filteredData = sampleRtData
+    .filter((d) => (filters.year ? d.tahun === filters.year : true))
+    .filter((d) =>
+      filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
+    );
+
+  return (
+    <div className="p-6 space-y-4">
+      <div className="flex justify-between items-center">
+        <Tabs value={activeTab} onValueChange={handleTabChange}>
+          <TabsList>
+            <TabsTrigger value="data">Data</TabsTrigger>
+            <TabsTrigger value="visualisasi">Visualisasi Data</TabsTrigger>
+          </TabsList>
+        </Tabs>
+        <DataToolbar
+          filters={filters}
+          onExport={handleExport}
+          onInput={handleInput}
+          onFilterChange={handleFilterChange}
+        />
+      </div>
+
+      <FilterControls onFilterChange={handleFilterChange} />
+
+      <Tabs value={activeTab} onValueChange={handleTabChange}>
+        <TabsContent value="data">
+          {filteredData.length === 0 ? (
+            <DataPlaceholder
+              message={
+                filters.year === null && filters.rw === "Semua RW"
+                  ? "Tidak ada data"
+                  : "Tidak ada data sesuai filter"
+              }
+              iconColor="text-red-500"
+            />
+          ) : (
+            <RtByRwTable data={filteredData} />
+          )}
+        </TabsContent>
+        <TabsContent value="visualisasi">
+          <VisualisasiPlaceholder />
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+};
+
+export default DataPage;

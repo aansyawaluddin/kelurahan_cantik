@@ -29,11 +29,26 @@ interface CustomTreemapProps {
   value?: number;
 }
 
+const COLOR_LOW: [number, number, number] = [255, 200, 200];
+const COLOR_HIGH: [number, number, number] = [139, 0, 0];
+
+function interpolateColor(
+  color1: [number, number, number],
+  color2: [number, number, number],
+  factor: number
+): string {
+  const result = color1.map((c, i) =>
+    Math.round(c + (color2[i] - c) * factor)
+  ) as [number, number, number];
+  return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
+}
+
 function CustomizedTreemapContent(props: CustomTreemapProps) {
   const { x = 0, y = 0, width = 0, height = 0, name = "", value = 0 } = props;
 
-  // skala opacity 0.2–1.0 berdasarkan value
-  const opacity = ((value - minValue) / (maxValue - minValue)) * 0.8 + 0.2;
+  // normalisasi 0–1
+  const factor = (value - minValue) / (maxValue - minValue);
+  const fillColor = interpolateColor(COLOR_LOW, COLOR_HIGH, factor);
 
   return (
     <g>
@@ -42,7 +57,7 @@ function CustomizedTreemapContent(props: CustomTreemapProps) {
         y={y}
         width={width}
         height={height}
-        style={{ fill: `rgba(139, 0, 0, ${opacity})` }}
+        style={{ fill: fillColor, stroke: "#fff", strokeWidth: 1 }}
       />
       {width > 60 && height > 40 && (
         <>
@@ -63,6 +78,7 @@ function CustomizedTreemapContent(props: CustomTreemapProps) {
     </g>
   );
 }
+
 
 export default function PopulationTreemap() {
   return (
