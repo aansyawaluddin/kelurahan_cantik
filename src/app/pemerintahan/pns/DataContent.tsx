@@ -9,9 +9,16 @@ import PnsByEducation, {
 } from "@/components/pemerintahan/pns/PnsByEducation";
 import InputModal from "@/components/pemerintahan/pns/input";
 
+type Filter = {
+  year: number | null;
+  kecamatan: string;
+  kelurahan: string;
+  rw: string;
+};
+
 const DataPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"data" | "visualisasi">("data");
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filter>({
     year: null,
     kecamatan: "",
     kelurahan: "",
@@ -21,8 +28,12 @@ const DataPage: React.FC = () => {
   // state untuk modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleTabChange = (value: string) => setActiveTab(value as any);
-  const handleFilterChange = (newFilters: any) => setFilters(newFilters);
+  const handleTabChange = (value: string) => {
+    if (value === "data" || value === "visualisasi") {
+      setActiveTab(value);
+    }
+  };
+  const handleFilterChange = (newFilters: Filter) => setFilters(newFilters);
   const handleExport = () => console.log("Export data dengan filter:", filters);
   const handleInput = () => setIsModalOpen(true);
 
