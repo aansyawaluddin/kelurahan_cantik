@@ -142,8 +142,12 @@ const Sidebar: FC = () => {
     }
   }, []);
 
-  const toggleMenu = (title: string) =>
-    setOpenMenu((prev) => (prev === title ? null : title));
+  const toggleMenu = (title: string) => {
+    // Jika submenu belum terbuka, buka; jika sudah terbuka, jangan ditutup
+    if (openMenu !== title) {
+      setOpenMenu(title);
+    }
+  };
 
   return (
     <aside className="h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-scroll fixed">
@@ -168,6 +172,7 @@ const Sidebar: FC = () => {
                   <div className="flex items-start justify-between px-2 py-2 hover:bg-gray-100 rounded text-left">
                     <Link
                       href={item.path}
+                      onClick={() => toggleMenu(item.title)}
                       className="flex items-start gap-2 flex-grow"
                     >
                       <Image
@@ -188,7 +193,14 @@ const Sidebar: FC = () => {
                       </span>
                     </Link>
                     <button
-                      onClick={() => toggleMenu(item.title)}
+                      onClick={() => {
+                        // Tombol panah: toggle buka/tutup submenu
+                        if (openMenu === item.title) {
+                          setOpenMenu(null);
+                        } else {
+                          setOpenMenu(item.title);
+                        }
+                      }}
                       className="mt-1 p-1"
                     >
                       {openMenu === item.title ? (
