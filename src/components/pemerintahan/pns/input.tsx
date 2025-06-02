@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import FilterControls from "@/components/pemerintahan/FilterControls";
+import FilterControls from "@/components/ui/FilterControls";
 import { X } from "lucide-react";
 
 type Filters = {

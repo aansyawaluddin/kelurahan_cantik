@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import FilterControls from "@/components/kependudukan/FilterControls";
-import DataToolbar from "@/components/kependudukan/DataToolbars";
-import DataPlaceholder from "@/components/kependudukan/DataPlaceholders";
-import VisualizationPlaceholder from "@/components/kependudukan/visualizationPlaceholder";
+import FilterControls from "@/components/ui/FilterControls";
+import DataToolbar from "@/components/ui/DataToolbar";
+import DataPlaceholder from "@/components/ui/DataPlaceholder";
+import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
 import KelompokUmurTable, {
   SampleUmurData,
   KelompokUmurRow,
@@ -70,7 +70,7 @@ const DataContent: React.FC = () => {
         </TabsContent>
 
         <TabsContent value="visualisasi">
-          <VisualizationPlaceholder />
+          <VisualisasiPlaceholder />
         </TabsContent>
       </Tabs>
     </div>

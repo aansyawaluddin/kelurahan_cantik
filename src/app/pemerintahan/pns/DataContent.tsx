@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import FilterControls from "@/components/pemerintahan/FilterControls";
-import DataToolbar from "@/components/pemerintahan/DataToolbar";
-import DataPlaceholder from "@/components/pemerintahan/DataPlaceholder";
+import FilterControls from "@/components/ui/FilterControls";
+import DataToolbar from "@/components/ui/DataToolbar";
+import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import PnsByEducation, {
   samplePnsData,
 } from "@/components/pemerintahan/pns/PnsByEducation";
@@ -37,11 +37,12 @@ const DataPage: React.FC = () => {
   const handleExport = () => console.log("Export data dengan filter:", filters);
   const handleInput = () => setIsModalOpen(true);
 
-  const filteredData = samplePnsData
-    .filter((d) => (filters.year ? d.tahun === filters.year : true))
-    // .filter((d) =>
-    //   filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
-    // );
+  const filteredData = samplePnsData.filter((d) =>
+    filters.year ? d.tahun === filters.year : true
+  );
+  // .filter((d) =>
+  //   filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
+  // );
 
   return (
     <div className="p-6 space-y-4">

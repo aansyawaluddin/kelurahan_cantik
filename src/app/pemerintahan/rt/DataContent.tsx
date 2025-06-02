@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import FilterControls from "@/components/pemerintahan/FilterControls";
-import DataToolbar from "@/components/pemerintahan/DataToolbar";
-import DataPlaceholder from "@/components/pemerintahan/DataPlaceholder";
-import VisualisasiPlaceholder from "@/components/pemerintahan/visualizationPlaceHolder";
+import FilterControls from "@/components/ui/FilterControls";
+import DataToolbar from "@/components/ui/DataToolbar";
+import DataPlaceholder from "@/components/ui/DataPlaceholder";
+import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
 import RtByRwTable, {
   sampleRtData,
 } from "@/components/pemerintahan/rt/RtByRwTable";

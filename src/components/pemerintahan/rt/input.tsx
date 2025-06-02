@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import FilterControls from "@/components/pemerintahan/FilterControls";
+import FilterControls from "@/components/ui/FilterControls";
 import { X } from "lucide-react";
 
 // Define the shape of our filter state
@@ -82,7 +82,7 @@ const InputModal: React.FC<InputModalProps> = ({ open, onOpenChange }) => {
                 <h3 className="font-medium mb-5">
                   RT {String(idx + 1).padStart(2, "0")}
                 </h3>
-                <div >
+                <div>
                   <div>
                     <input
                       type="number"
