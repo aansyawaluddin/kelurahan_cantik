@@ -46,10 +46,8 @@ const DataPage: React.FC = () => {
           </TabsList>
         </Tabs>
         <DataToolbar
-          filters={filters}
           onExport={handleExport}
-          onInput={handleInput}
-          onFilterChange={handleFilterChange}
+          onOpenInput={handleInput}
         />
       </div>
 

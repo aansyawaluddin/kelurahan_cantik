@@ -7,6 +7,7 @@ import VisualisasiPlaceholder from "@/components/pemerintahan/visualizationPlace
 import RtByRwTable, {
   sampleRtData,
 } from "@/components/pemerintahan/rt/RtByRwTable";
+import InputModal from "@/components/pemerintahan/rt/input";
 
 const DataPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"data" | "visualisasi">("data");
@@ -17,12 +18,14 @@ const DataPage: React.FC = () => {
     rw: "Semua RW",
   });
 
+  // state untuk modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleTabChange = (value: string) => setActiveTab(value as any);
   const handleFilterChange = (newFilters: any) => setFilters(newFilters);
   const handleExport = () => console.log("Export data dengan filter:", filters);
-  const handleInput = () => console.log("Navigasi ke halaman input");
+  const handleInput = () => setIsModalOpen(true);
 
-  // prepare filtered data: show all when no filters applied
   const filteredData = sampleRtData
     .filter((d) => (filters.year ? d.tahun === filters.year : true))
     .filter((d) =>
@@ -38,12 +41,7 @@ const DataPage: React.FC = () => {
             <TabsTrigger value="visualisasi">Visualisasi Data</TabsTrigger>
           </TabsList>
         </Tabs>
-        <DataToolbar
-          filters={filters}
-          onExport={handleExport}
-          onInput={handleInput}
-          onFilterChange={handleFilterChange}
-        />
+        <DataToolbar onExport={handleExport} onOpenInput={handleInput} />
       </div>
 
       <FilterControls onFilterChange={handleFilterChange} />
@@ -67,6 +65,9 @@ const DataPage: React.FC = () => {
           <VisualisasiPlaceholder />
         </TabsContent>
       </Tabs>
+
+      {/* Panggil modal terpisah */}
+      <InputModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </div>
   );
 };
