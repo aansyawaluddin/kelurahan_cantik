@@ -8,7 +8,7 @@ type PnsRow = {
   jumlah: number;
 };
 
-export const sampleRtData: PnsRow[] = [
+export const samplePnsData: PnsRow[] = [
   {
     tahun: 2024,
     tingkatPendidikan: "SD/Sederajat",

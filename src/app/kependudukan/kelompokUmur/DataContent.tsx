@@ -4,82 +4,19 @@ import FilterControls from "@/components/kependudukan/FilterControls";
 import DataToolbar from "@/components/kependudukan/DataToolbars";
 import DataPlaceholder from "@/components/kependudukan/DataPlaceholders";
 import VisualizationPlaceholder from "@/components/kependudukan/visualizationPlaceholder";
-import KelompokUmurTable from "@/components/kependudukan/kelompokUmur/kelompokUmurTable";
+import KelompokUmurTable, {
+  SampleUmurData,
+  KelompokUmurRow,
+} from "@/components/kependudukan/kelompokUmur/kelompokUmurTable";
 
-const dummyData = [
-  {
-    tahun: 2024,
-    kelompokUmur: "0-4",
-    lakiLaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "5-9",
-    lakiLaki: 702,
-    perempuan: 685,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "10-14",
-    lakiLaki: 702,
-    perempuan: 685,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "15-19",
-    lakiLaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "20-24",
-    lakiLaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "25-29",
-    lakiLaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "30-34",
-    lakiLaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "35-39",
-    lakiLaki: 702,
-    perempuan: 685,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "40-44",
-    lakiLaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    kelompokUmur: "45-49",
-    lakiLaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-];
+type Filter = {
+  year: number | null;
+  kecamatan: string;
+  kelurahan: string;
+  rw: string;
+};
 
-const DataContent = () => {
+const DataContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"data" | "visualisasi">("data");
   const [filters, setFilters] = useState<Filter>({
     year: null,
@@ -98,8 +35,7 @@ const DataContent = () => {
   const handleExport = () => console.log("Export data kelompok umur:", filters);
   const handleInput = () => {}; // Fungsi placeholder untuk input
 
-  // Filter data berdasarkan tahun
-  const filteredData = dummyData.filter((d) =>
+  const filteredData: KelompokUmurRow[] = SampleUmurData.filter((d) =>
     filters.year ? d.tahun === filters.year : true
   );
 

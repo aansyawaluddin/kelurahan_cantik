@@ -3,9 +3,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import FilterControls from "@/components/pemerintahan/FilterControls";
 import DataToolbar from "@/components/pemerintahan/DataToolbar";
 import DataPlaceholder from "@/components/pemerintahan/DataPlaceholder";
-import VisualisasiPlaceholder from "@/components/pemerintahan/visualizationPlaceHolder";
 import PnsByEducation, {
-  sampleRtData,
+  samplePnsData,
 } from "@/components/pemerintahan/pns/PnsByEducation";
 import InputModal from "@/components/pemerintahan/pns/input";
 import Visualisasi from "@/components/pemerintahan/pns/visualisasi";
@@ -38,7 +37,7 @@ const DataPage: React.FC = () => {
   const handleExport = () => console.log("Export data dengan filter:", filters);
   const handleInput = () => setIsModalOpen(true);
 
-  const filteredData = sampleRtData
+  const filteredData = samplePnsData
     .filter((d) => (filters.year ? d.tahun === filters.year : true))
     // .filter((d) =>
     //   filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true

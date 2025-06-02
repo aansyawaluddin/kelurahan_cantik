@@ -8,7 +8,7 @@ import {
   ChartOptions,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { sampleRtData } from "@/components/pemerintahan/pns/PnsByEducation";
+import { samplePnsData } from "@/components/pemerintahan/pns/PnsByEducation";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
@@ -35,7 +35,7 @@ function interpolateColor(
 }
 
 export default function Visualisasi() {
-  const data: PnsRow[] = sampleRtData;
+  const data: PnsRow[] = samplePnsData;
 
   const labels = data.map((item) => item.tingkatPendidikan);
   const values = data.map((item) => item.jumlah);
