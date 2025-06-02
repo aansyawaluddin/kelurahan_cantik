@@ -19,8 +19,8 @@ export const menu = [
     path: "/kependudukan",
     icon: "/icon/people.png",
     children: [
-      { title: "Distribusi Penduduk", path: "/kependudukan/distribusi" },
-      { title: "Kelompok Umur", path: "/kependudukan/umur" },
+      { title: "Distribusi Penduduk", path: "/kependudukan/distribusiPenduduk" },
+      { title: "Kelompok Umur", path: "/kependudukan/kelompokUmur" },
     ],
   },
   {

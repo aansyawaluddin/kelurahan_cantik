@@ -41,7 +41,7 @@ function SchoolFacilitiesChart() {
               <Bar dataKey="2023/2024" fill="#DAA520" />
             </BarChart>
           </ResponsiveContainer>
-        </CardContent>
+        </CardContent> 
       </Card>
     </div>
   );
