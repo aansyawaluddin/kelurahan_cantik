@@ -8,6 +8,7 @@ import PnsByEducation, {
   sampleRtData,
 } from "@/components/pemerintahan/pns/PnsByEducation";
 import InputModal from "@/components/pemerintahan/pns/input";
+import Visualisasi from "@/components/pemerintahan/pns/visualisasi";
 
 type Filter = {
   year: number | null;
@@ -73,7 +74,7 @@ const DataPage: React.FC = () => {
           )}
         </TabsContent>
         <TabsContent value="visualisasi">
-          <VisualisasiPlaceholder />
+          <Visualisasi />
         </TabsContent>
       </Tabs>
 
