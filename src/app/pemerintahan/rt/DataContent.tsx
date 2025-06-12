@@ -30,6 +30,12 @@ const DataPage: React.FC = () => {
     .filter((d) => (filters.year ? d.tahun === filters.year : true))
     .filter((d) =>
       filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
+    )
+    .filter((d) =>
+      filters.kecamatan ? d.kecamatan === filters.kecamatan : true
+    )
+    .filter((d) =>
+      filters.kelurahan ? d.kelurahan === filters.kelurahan : true
     );
 
   return (
