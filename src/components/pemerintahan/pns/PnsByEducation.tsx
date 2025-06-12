@@ -5,6 +5,9 @@ type PnsRow = {
   tingkatPendidikan: string;
   lakilaki: number;
   perempuan: number;
+  rw: string;
+  kecamatan: string;
+  kelurahan: string;
   jumlah: number;
 };
 
@@ -15,6 +18,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 702,
     perempuan: 665,
     jumlah: 1367,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2024,
@@ -22,6 +28,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 702,
     perempuan: 665,
     jumlah: 1367,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2024,
@@ -29,6 +38,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 702,
     perempuan: 665,
     jumlah: 1367,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2024,
@@ -36,6 +48,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 702,
     perempuan: 665,
     jumlah: 1367,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2024,
@@ -43,6 +58,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 702,
     perempuan: 665,
     jumlah: 1367,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2024,
@@ -50,6 +68,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 665,
     perempuan: 702,
     jumlah: 1367,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2024,
@@ -57,6 +78,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 702,
     perempuan: 665,
     jumlah: 1367,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2025,
@@ -64,6 +88,10 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 900,
     perempuan: 782,
     jumlah: 1682,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
+
   },
   {
     tahun: 2025,
@@ -71,6 +99,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 900,
     perempuan: 782,
     jumlah: 1682,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
   {
     tahun: 2025,
@@ -78,6 +109,9 @@ export const samplePnsData: PnsRow[] = [
     lakilaki: 900,
     perempuan: 782,
     jumlah: 1682,
+    kecamatan: "Tamalanrea",
+    kelurahan: "Bira",
+    rw: "RW 01",
   },
 ];
 
