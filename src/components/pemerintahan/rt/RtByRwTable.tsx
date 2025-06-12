@@ -4,20 +4,26 @@ type RtRow = {
   tahun: number;
   rw: string;
   jumlahRt: number;
+  kecamatan: string;
+  kelurahan: string;
 };
 
 export const sampleRtData: RtRow[] = [
-  { tahun: 2023, rw: "RW 01", jumlahRt: 5 },
-  { tahun: 2023, rw: "RW 02", jumlahRt: 4 },
-  { tahun: 2023, rw: "RW 03", jumlahRt: 6 },
-  { tahun: 2024, rw: "RW 01", jumlahRt: 5 },
-  { tahun: 2024, rw: "RW 02", jumlahRt: 4 },
-  { tahun: 2024, rw: "RW 03", jumlahRt: 6 },
-  { tahun: 2025, rw: "RW 01", jumlahRt: 5 },
-  { tahun: 2025, rw: "RW 02", jumlahRt: 4 },
-  { tahun: 2025, rw: "RW 03", jumlahRt: 6 },
-  { tahun: 2026, rw: "RW 01", jumlahRt: 5 },
+  { tahun: 2023, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
+  { tahun: 2023, rw: "RW 02", jumlahRt: 4, kecamatan: "Tamalate", kelurahan: "Mangasa" },
+  { tahun: 2023, rw: "RW 03", jumlahRt: 6, kecamatan: "Tamalate", kelurahan: "Parang Tambung" },
+
+  { tahun: 2024, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
+  { tahun: 2024, rw: "RW 02", jumlahRt: 4, kecamatan: "Tamalate", kelurahan: "Mangasa" },
+  { tahun: 2024, rw: "RW 03", jumlahRt: 6, kecamatan: "Tamalate", kelurahan: "Parang Tambung" },
+
+  { tahun: 2025, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
+  { tahun: 2025, rw: "RW 02", jumlahRt: 4, kecamatan: "Tamalate", kelurahan: "Mangasa" },
+  { tahun: 2025, rw: "RW 03", jumlahRt: 6, kecamatan: "Tamalate", kelurahan: "Parang Tambung" },
+
+  { tahun: 2026, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
 ];
+
 
 interface RtByRwTableProps {
   data: RtRow[];

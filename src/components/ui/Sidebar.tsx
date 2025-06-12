@@ -7,7 +7,6 @@ export const menu = [
   { title: "Dashboard", path: "/dashboard", icon: "/icon/dashboard.png" },
   {
     title: "Pemerintahan",
-    path: "/pemerintahan",
     icon: "/icon/government.png",
     children: [
       { title: "Jumlah RT", path: "/pemerintahan/rt" },
@@ -16,7 +15,6 @@ export const menu = [
   },
   {
     title: "Kependudukan",
-    path: "/kependudukan",
     icon: "/icon/people.png",
     children: [
       { title: "Distribusi Penduduk", path: "/kependudukan/distribusiPenduduk" },
@@ -25,7 +23,6 @@ export const menu = [
   },
   {
     title: "Pendidikan",
-    path: "/pendidikan",
     icon: "/icon/graduation.png",
     children: [
       { title: "RW yang Memiliki Sekolah", path: "/pendidikan/sekolah" },
@@ -36,7 +33,6 @@ export const menu = [
   },
   {
     title: "Kesehatan",
-    path: "/kesehatan",
     icon: "/icon/pharmacy.png",
     children: [
       { title: "RW yang Memiliki Puskesmas", path: "/kesehatan/puskesmas" },
@@ -45,7 +41,6 @@ export const menu = [
   },
   {
     title: "Perumahan dan Lingkungan",
-    path: "/perumahan",
     icon: "/icon/home.png",
     children: [
       { title: "RW menurut Sumber Air Minum", path: "/perumahan/air" },
@@ -63,7 +58,6 @@ export const menu = [
   },
   {
     title: "Agama dan Sosial",
-    path: "/agama",
     icon: "/icon/handshake.png",
     children: [
       { title: "Jumlah Tempat Ibadah", path: "/agama/tempat-ibadah" },
@@ -87,7 +81,6 @@ export const menu = [
   },
   {
     title: "Pariwisata, Transportasi dan Komunikasi",
-    path: "/pariwisata",
     icon: "/icon/worldwide.png",
     children: [
       { title: "Jumlah Sarana Akomodasi", path: "/pariwisata/akomodasi" },
@@ -115,7 +108,6 @@ export const menu = [
   },
   {
     title: "Ekonomi",
-    path: "/ekonomi",
     icon: "/icon/wallet.png",
     children: [
       { title: "Jumlah Bank", path: "/ekonomi/bank" },
@@ -143,11 +135,9 @@ const Sidebar: FC = () => {
   }, []);
 
   const toggleMenu = (title: string) => {
-    // Jika submenu belum terbuka, buka; jika sudah terbuka, jangan ditutup
-    if (openMenu !== title) {
-      setOpenMenu(title);
-    }
+    setOpenMenu((prev) => (prev === title ? null : title));
   };
+
 
   return (
     <aside className="h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-scroll fixed">
@@ -168,65 +158,54 @@ const Sidebar: FC = () => {
           {menu.map((item) => (
             <li key={item.title} className="mb-3">
               {item.children ? (
-                <>
-                  <div className="flex items-start justify-between px-2 py-2 hover:bg-gray-100 rounded text-left">
-                    <Link
-                      href={item.path}
-                      onClick={() => toggleMenu(item.title)}
-                      className="flex items-start gap-2 flex-grow"
-                    >
-                      <Image
-                        src={item.icon}
-                        alt={`${item.title} icon`}
-                        width={20}
-                        height={20}
-                        className="icon-recolor mt-1 shrink-0"
-                      />
-                      <span
-                        className={`text-[16px] whitespace-normal break-words ${
-                          openMenu === item.title
-                            ? "text-[#1CA6A9] font-semibold"
-                            : "text-[#1CA6A9]"
-                        }`}
-                      >
-                        {item.title}
-                      </span>
-                    </Link>
-                    <button
-                      onClick={() => {
-                        // Tombol panah: toggle buka/tutup submenu
-                        if (openMenu === item.title) {
-                          setOpenMenu(null);
-                        } else {
-                          setOpenMenu(item.title);
-                        }
-                      }}
-                      className="mt-1 p-1"
-                    >
-                      {openMenu === item.title ? (
-                        <ChevronUpIcon className="w-4 h-4 text-[#1CA6A9]" />
-                      ) : (
-                        <ChevronDownIcon className="w-4 h-4 text-[#1CA6A9]" />
-                      )}
-                    </button>
-                  </div>
-                  {openMenu === item.title && (
-                    <ul className="mt-1 ml-6 pl-4 border-l-2 border-[#CFF2F2] bg-white">
-                      {item.children.map((sub) => (
-                        <li key={sub.path} className="pl-2 py-1">
-                          <Link
-                            href={sub.path}
-                            className={`text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200 ${
-                              currentPath === sub.path ? "font-semibold" : ""
-                            }`}
-                          >
-                            {sub.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </>
+  <>
+    <div
+      onClick={() => toggleMenu(item.title)}
+      className="flex items-start justify-between px-2 py-2 hover:bg-gray-100 rounded text-left cursor-pointer"
+    >
+      <div className="flex items-start gap-2 flex-grow">
+        <Image
+          src={item.icon}
+          alt={`${item.title} icon`}
+          width={20}
+          height={20}
+          className="icon-recolor mt-1 shrink-0"
+        />
+        <span
+          className={`text-[16px] select-none whitespace-normal break-words ${
+            openMenu === item.title
+              ? "text-[#1CA6A9] font-semibold"
+              : "text-[#1CA6A9]"
+          }`}
+        >
+          {item.title}
+        </span>
+      </div>
+      <div className="mt-1 p-1">
+        {openMenu === item.title ? (
+          <ChevronUpIcon className="w-4 h-4 text-[#1CA6A9]" />
+        ) : (
+          <ChevronDownIcon className="w-4 h-4 text-[#1CA6A9]" />
+        )}
+      </div>
+    </div>
+    {openMenu === item.title && (
+      <ul className="mt-1 ml-6 pl-4 border-l-2 border-[#CFF2F2] bg-white">
+        {item.children.map((sub) => (
+          <li key={sub.path} className="pl-2 py-1">
+            <Link
+              href={sub.path}
+              className={`text-[#1CA6A9] hover:opacity-80 transition-opacity duration-200 ${
+                currentPath === sub.path ? "font-semibold" : ""
+              }`}
+            >
+              {sub.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )}
+  </>
               ) : (
                 <div className="flex items-center px-2 py-1">
                   <Image
