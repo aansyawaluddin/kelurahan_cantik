@@ -13,13 +13,18 @@ const DataToolbar: React.FC<DataToolbarProps> = ({ onExport, onOpenInput }) => (
       <Button
         variant="outline"
         onClick={onExport}
-        className="mr-2 bg-[#E3B025] text-white"
+        className="mr-2 bg-[#E3B025] text-white hover:bg-transparent hover:text-[#E3B025] group border-[#E3B025]"
       >
-        <Upload className="w-4 h-4 mr-1 text-white" />
+        <Upload className="w-4 h-4 mr-1 text-white group-hover:text-[#E3B025]" />
         Export
       </Button>
-      <Button onClick={onOpenInput} className="text-white bg-[#1CA6A9]">
-        <Plus className="w-4 h-4 mr-1 text-white" />
+
+      <Button
+        variant="outline"
+        onClick={onOpenInput}
+        className="bg-[#1CA6A9] text-white hover:bg-transparent hover:text-[#1CA6A9] group border-[#1CA6A9]"
+      >
+        <Plus className="w-4 h-4 mr-1 text-white group-hover:text-[#1CA6A9]" />
         Input
       </Button>
     </div>
