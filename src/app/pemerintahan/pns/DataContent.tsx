@@ -80,7 +80,14 @@ const DataPage: React.FC = () => {
           )}
         </TabsContent>
         <TabsContent value="visualisasi">
-          <Visualisasi />
+          {filteredData.length === 0 ? (
+            <DataPlaceholder
+              message="Tidak ada data untuk visualisasi"
+              iconColor="text-red-500"
+            />
+          ) : (
+            <Visualisasi data={filteredData} />
+          )}
         </TabsContent>
       </Tabs>
 

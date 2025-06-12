@@ -37,8 +37,7 @@ function interpolateColor(
   return `rgb(${result.join(",")})`;
 }
 
-export default function Visualisasi() {
-  const data: PnsRow[] = samplePnsData;
+export default function Visualisasi({ data }: { data: PnsRow[] }) {
 
   const pendidikanTertentu = [
     "SD/Sederajat",
