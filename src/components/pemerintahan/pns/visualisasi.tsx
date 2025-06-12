@@ -17,6 +17,9 @@ type PnsRow = {
   tingkatPendidikan: string;
   lakilaki: number;
   perempuan: number;
+  rw: string;
+  kecamatan: string;
+  kelurahan: string;
   jumlah: number;
 };
 
@@ -37,8 +40,32 @@ function interpolateColor(
 export default function Visualisasi() {
   const data: PnsRow[] = samplePnsData;
 
-  const labels = data.map((item) => item.tingkatPendidikan);
-  const values = data.map((item) => item.jumlah);
+  const pendidikanTertentu = [
+    "SD/Sederajat",
+    "SMP/Sederajat",
+    "SMA/Sederajat",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "Strata 1",
+    "Strata 2",
+    "Strata 3",
+  ];
+
+  // Gabungkan jumlah berdasarkan tingkat pendidikan
+  const aggregatedData = data.reduce((acc, curr) => {
+    if (pendidikanTertentu.includes(curr.tingkatPendidikan)) {
+      if (!acc[curr.tingkatPendidikan]) {
+        acc[curr.tingkatPendidikan] = 0;
+      }
+      acc[curr.tingkatPendidikan] += curr.jumlah;
+    }
+    return acc;
+  }, {} as Record<string, number>);
+
+    const labels = Object.keys(aggregatedData);
+    const values = Object.values(aggregatedData);
 
   // Pie chart data
   const pieData = useMemo(() => {
