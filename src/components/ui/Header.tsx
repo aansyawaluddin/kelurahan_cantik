@@ -22,7 +22,7 @@ const Header: FC = () => {
   }, [pathname]);
 
   return (
-    <header className=" bg-white flex justify-between items-center">
+    <header className="bg-white flex justify-between mb-0 p-6 items-center">
       <h1 className="text-[20px] font-semibold text-black">
         Kelurahan Cantik – {pageTitle}
       </h1>
