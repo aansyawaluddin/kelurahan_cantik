@@ -3,9 +3,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
-import PnsByEducation, {
-  samplePnsData,
-} from "@/components/pemerintahan/pns/PnsByEducation";
+import { samplePnsData } from "@/data/data";
+import PnsByEducation from "@/components/pemerintahan/pns/PnsByEducation";
 import InputModal from "@/components/pemerintahan/pns/input";
 import Visualisasi from "@/components/pemerintahan/pns/visualisasi";
 
@@ -39,10 +38,16 @@ const DataPage: React.FC = () => {
 
   const filteredData = samplePnsData.filter((d) =>
     filters.year ? d.tahun === filters.year : true
+  )
+  .filter((d) =>
+    filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
+  )
+  .filter((d) =>
+    filters.kecamatan ? d.kecamatan === filters.kecamatan : true
+  )
+  .filter((d) =>
+    filters.kelurahan ? d.kelurahan === filters.kelurahan : true
   );
-  // .filter((d) =>
-  //   filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
-  // );
 
   return (
     <div className="p-6 space-y-4">
@@ -74,7 +79,14 @@ const DataPage: React.FC = () => {
           )}
         </TabsContent>
         <TabsContent value="visualisasi">
-          <Visualisasi />
+          {filteredData.length === 0 ? (
+            <DataPlaceholder
+              message="Tidak ada data untuk visualisasi"
+              iconColor="text-red-500"
+            />
+          ) : (
+            <Visualisasi data={filteredData} />
+          )}
         </TabsContent>
       </Tabs>
 

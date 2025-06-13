@@ -4,9 +4,8 @@ import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
-import RtByRwTable, {
-  sampleRtData,
-} from "@/components/pemerintahan/rt/RtByRwTable";
+import { sampleRtData } from "@/data/data";
+import RtByRwTable from "@/components/pemerintahan/rt/RtByRwTable";
 import InputModal from "@/components/pemerintahan/rt/input";
 
 const DataPage: React.FC = () => {
@@ -30,6 +29,12 @@ const DataPage: React.FC = () => {
     .filter((d) => (filters.year ? d.tahun === filters.year : true))
     .filter((d) =>
       filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
+    )
+    .filter((d) =>
+      filters.kecamatan ? d.kecamatan === filters.kecamatan : true
+    )
+    .filter((d) =>
+      filters.kelurahan ? d.kelurahan === filters.kelurahan : true
     );
 
   return (

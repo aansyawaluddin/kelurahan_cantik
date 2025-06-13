@@ -55,7 +55,7 @@ export default function PopulationDensity() {
           <h2 className="text-center font-semibold text-lg">
             Kepadatan Penduduk Menurut RW
           </h2>
-          <p className="text-center text-[8px] text-black">Satuan: Jiwa/km²</p>
+          <p className="text-center text-[15px] text-black">Satuan: Jiwa/km²</p>
           <ResponsiveContainer width="100%" height={440}>
             <BarChart
               layout="vertical"
