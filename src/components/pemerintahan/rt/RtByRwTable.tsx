@@ -1,6 +1,8 @@
 import React from "react";
+import { Pagination, ITEMS_PER_PAGE } from "@/components/ui/Pagination";
+import { useState } from "react";
 
-type RtRow = {
+export type RtByRwTableData = {
   tahun: number;
   rw: string;
   jumlahRt: number;
@@ -8,28 +10,20 @@ type RtRow = {
   kelurahan: string;
 };
 
-export const sampleRtData: RtRow[] = [
-  { tahun: 2023, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
-  { tahun: 2023, rw: "RW 02", jumlahRt: 4, kecamatan: "Tamalate", kelurahan: "Mangasa" },
-  { tahun: 2023, rw: "RW 03", jumlahRt: 6, kecamatan: "Tamalate", kelurahan: "Parang Tambung" },
-
-  { tahun: 2024, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
-  { tahun: 2024, rw: "RW 02", jumlahRt: 4, kecamatan: "Tamalate", kelurahan: "Mangasa" },
-  { tahun: 2024, rw: "RW 03", jumlahRt: 6, kecamatan: "Tamalate", kelurahan: "Parang Tambung" },
-
-  { tahun: 2025, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
-  { tahun: 2025, rw: "RW 02", jumlahRt: 4, kecamatan: "Tamalate", kelurahan: "Mangasa" },
-  { tahun: 2025, rw: "RW 03", jumlahRt: 6, kecamatan: "Tamalate", kelurahan: "Parang Tambung" },
-
-  { tahun: 2026, rw: "RW 01", jumlahRt: 5, kecamatan: "Tamalate", kelurahan: "Maccini Sombala" },
-];
-
-
-interface RtByRwTableProps {
-  data: RtRow[];
+export interface RtByRwTableProps {
+  data: RtByRwTableData[];
 }
 
 export default function RtByRwTable({ data }: RtByRwTableProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+
+  const paginatedData = data.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+  
   return (
     <div className="mt-6 bg-white rounded-2xl shadow p-6 text-base">
       <h2 className="text-xl font-semibold text-center mb-4">
@@ -46,7 +40,7 @@ export default function RtByRwTable({ data }: RtByRwTableProps) {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, idx) => (
+            {paginatedData.map((row, idx) => (
               <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-[#F9FBF5]"}>
                 <td className="px-6 py-4 whitespace-nowrap text-center">{row.tahun}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">{row.rw}</td>
@@ -86,7 +80,12 @@ export default function RtByRwTable({ data }: RtByRwTableProps) {
           </tbody>
         </table>
       </div>
-
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={data.length}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }

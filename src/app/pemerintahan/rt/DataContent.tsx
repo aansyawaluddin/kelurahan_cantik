@@ -4,9 +4,8 @@ import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
-import RtByRwTable, {
-  sampleRtData,
-} from "@/components/pemerintahan/rt/RtByRwTable";
+import { sampleRtData } from "@/data/data";
+import RtByRwTable from "@/components/pemerintahan/rt/RtByRwTable";
 import InputModal from "@/components/pemerintahan/rt/input";
 
 const DataPage: React.FC = () => {

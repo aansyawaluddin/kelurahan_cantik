@@ -140,7 +140,7 @@ const Sidebar: FC = () => {
 
 
   return (
-    <aside className="h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-scroll fixed">
+    <aside className="h-screen w-64 p-6 bg-white font-space-grotesk overflow-y-hidden fixed">
       <div className="mb-8 flex items-center">
         <Image
           src="/images/logo.png"

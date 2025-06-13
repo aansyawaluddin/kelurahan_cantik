@@ -3,9 +3,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
-import PnsByEducation, {
-  samplePnsData,
-} from "@/components/pemerintahan/pns/PnsByEducation";
+import { samplePnsData } from "@/data/data";
+import PnsByEducation from "@/components/pemerintahan/pns/PnsByEducation";
 import InputModal from "@/components/pemerintahan/pns/input";
 import Visualisasi from "@/components/pemerintahan/pns/visualisasi";
 
