@@ -4,9 +4,8 @@ import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
-import RtByRwTable, {
-  sampleRtData,
-} from "@/components/pemerintahan/rt/RtByRwTable";
+import { sampleRtData } from "@/data/data";
+import RtByRwTable from "@/components/pemerintahan/rt/RtByRwTable";
 import InputModal from "@/components/pemerintahan/rt/input";
 
 const DataPage: React.FC = () => {
@@ -30,44 +29,52 @@ const DataPage: React.FC = () => {
     .filter((d) => (filters.year ? d.tahun === filters.year : true))
     .filter((d) =>
       filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
+    )
+    .filter((d) =>
+      filters.kecamatan ? d.kecamatan === filters.kecamatan : true
+    )
+    .filter((d) =>
+      filters.kelurahan ? d.kelurahan === filters.kelurahan : true
     );
 
   return (
-    <div className="p-6 space-y-4">
-      <div className="flex justify-between items-center">
+    <div className="p-6 space-y-4 bg-gray-50">
+      <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
+          <div className="flex justify-between items-center">
+          <Tabs value={activeTab} onValueChange={handleTabChange}>
+            <TabsList>
+              <TabsTrigger value="data">Data</TabsTrigger>
+              <TabsTrigger value="visualisasi">Visualisasi Data</TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <DataToolbar onExport={handleExport} onOpenInput={handleInput} />
+        </div>
+
+        <FilterControls onFilterChange={handleFilterChange} />
+
         <Tabs value={activeTab} onValueChange={handleTabChange}>
-          <TabsList>
-            <TabsTrigger value="data">Data</TabsTrigger>
-            <TabsTrigger value="visualisasi">Visualisasi Data</TabsTrigger>
-          </TabsList>
+          <TabsContent value="data">
+            {filteredData.length === 0 ? (
+              <DataPlaceholder
+                message={
+                  filters.year === null && filters.rw === "Semua RW"
+                    ? "Tidak ada data"
+                    : "Tidak ada data sesuai filter"
+                }
+                iconColor="text-red-500"
+              />
+            ) : (
+              <RtByRwTable data={filteredData} />
+            )}
+          </TabsContent>
+          <TabsContent value="visualisasi">
+            <VisualisasiPlaceholder />
+          </TabsContent>
         </Tabs>
-        <DataToolbar onExport={handleExport} onOpenInput={handleInput} />
+
+        {/* Panggil modal terpisah */}
+        <InputModal open={isModalOpen} onOpenChange={setIsModalOpen} />
       </div>
-
-      <FilterControls onFilterChange={handleFilterChange} />
-
-      <Tabs value={activeTab} onValueChange={handleTabChange}>
-        <TabsContent value="data">
-          {filteredData.length === 0 ? (
-            <DataPlaceholder
-              message={
-                filters.year === null && filters.rw === "Semua RW"
-                  ? "Tidak ada data"
-                  : "Tidak ada data sesuai filter"
-              }
-              iconColor="text-red-500"
-            />
-          ) : (
-            <RtByRwTable data={filteredData} />
-          )}
-        </TabsContent>
-        <TabsContent value="visualisasi">
-          <VisualisasiPlaceholder />
-        </TabsContent>
-      </Tabs>
-
-      {/* Panggil modal terpisah */}
-      <InputModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </div>
   );
 };

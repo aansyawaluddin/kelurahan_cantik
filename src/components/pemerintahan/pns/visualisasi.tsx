@@ -8,7 +8,6 @@ import {
   ChartOptions,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { samplePnsData } from "@/components/pemerintahan/pns/PnsByEducation";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
@@ -17,6 +16,9 @@ type PnsRow = {
   tingkatPendidikan: string;
   lakilaki: number;
   perempuan: number;
+  rw: string;
+  kecamatan: string;
+  kelurahan: string;
   jumlah: number;
 };
 
@@ -34,11 +36,34 @@ function interpolateColor(
   return `rgb(${result.join(",")})`;
 }
 
-export default function Visualisasi() {
-  const data: PnsRow[] = samplePnsData;
+export default function Visualisasi({ data }: { data: PnsRow[] }) {
 
-  const labels = data.map((item) => item.tingkatPendidikan);
-  const values = data.map((item) => item.jumlah);
+  const pendidikanTertentu = [
+    "SD/Sederajat",
+    "SMP/Sederajat",
+    "SMA/Sederajat",
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "Strata 1",
+    "Strata 2",
+    "Strata 3",
+  ];
+
+  // Gabungkan jumlah berdasarkan tingkat pendidikan
+  const aggregatedData = data.reduce((acc, curr) => {
+    if (pendidikanTertentu.includes(curr.tingkatPendidikan)) {
+      if (!acc[curr.tingkatPendidikan]) {
+        acc[curr.tingkatPendidikan] = 0;
+      }
+      acc[curr.tingkatPendidikan] += curr.jumlah;
+    }
+    return acc;
+  }, {} as Record<string, number>);
+
+    const labels = Object.keys(aggregatedData);
+    const values = Object.values(aggregatedData);
 
   // Pie chart data
   const pieData = useMemo(() => {
@@ -101,7 +126,7 @@ export default function Visualisasi() {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto mt-8">
       <h1 className="text-center font-bold text-black text-[20px] mb-10">
         Persentase Jumlah PNS menurut Tingkat Pendidikan
       </h1>

@@ -3,9 +3,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
-import PnsByEducation, {
-  samplePnsData,
-} from "@/components/pemerintahan/pns/PnsByEducation";
+import { samplePnsData } from "@/data/data";
+import PnsByEducation from "@/components/pemerintahan/pns/PnsByEducation";
 import InputModal from "@/components/pemerintahan/pns/input";
 import Visualisasi from "@/components/pemerintahan/pns/visualisasi";
 
@@ -39,47 +38,63 @@ const DataPage: React.FC = () => {
 
   const filteredData = samplePnsData.filter((d) =>
     filters.year ? d.tahun === filters.year : true
+  )
+  .filter((d) =>
+    filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
+  )
+  .filter((d) =>
+    filters.kecamatan ? d.kecamatan === filters.kecamatan : true
+  )
+  .filter((d) =>
+    filters.kelurahan ? d.kelurahan === filters.kelurahan : true
   );
-  // .filter((d) =>
-  //   filters.rw && filters.rw !== "Semua RW" ? d.rw === filters.rw : true
-  // );
 
   return (
-    <div className="p-6 space-y-4">
-      <div className="flex justify-between items-center">
+    <div className="p-6 space-y-4  bg-gray-50">
+      <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <div className="flex justify-between items-center">
+          <Tabs value={activeTab} onValueChange={handleTabChange}>
+            <TabsList>
+              <TabsTrigger value="data">Data</TabsTrigger>
+              <TabsTrigger value="visualisasi">Visualisasi Data</TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <DataToolbar onExport={handleExport} onOpenInput={handleInput} />
+        </div>
+
+        <FilterControls onFilterChange={handleFilterChange} />
+
         <Tabs value={activeTab} onValueChange={handleTabChange}>
-          <TabsList>
-            <TabsTrigger value="data">Data</TabsTrigger>
-            <TabsTrigger value="visualisasi">Visualisasi Data</TabsTrigger>
-          </TabsList>
+          <TabsContent value="data">
+            {filteredData.length === 0 ? (
+              <DataPlaceholder
+                message={
+                  filters.year === null && filters.rw === "Semua RW"
+                    ? "Tidak ada data"
+                    : "Tidak ada data sesuai filter"
+                }
+                iconColor="text-red-500"
+              />
+            ) : (
+              <PnsByEducation data={filteredData} />
+            )}
+          </TabsContent>
+          <TabsContent value="visualisasi">
+            {filteredData.length === 0 ? (
+              <DataPlaceholder
+                message="Tidak ada data untuk visualisasi"
+                iconColor="text-red-500"
+              />
+            ) : (
+              <Visualisasi data={filteredData} />
+            )}
+          </TabsContent>
         </Tabs>
-        <DataToolbar onExport={handleExport} onOpenInput={handleInput} />
+
+        {/* Panggil modal terpisah */}
+        <InputModal open={isModalOpen} onOpenChange={setIsModalOpen} />
       </div>
-
-      <FilterControls onFilterChange={handleFilterChange} />
-
-      <Tabs value={activeTab} onValueChange={handleTabChange}>
-        <TabsContent value="data">
-          {filteredData.length === 0 ? (
-            <DataPlaceholder
-              message={
-                filters.year === null && filters.rw === "Semua RW"
-                  ? "Tidak ada data"
-                  : "Tidak ada data sesuai filter"
-              }
-              iconColor="text-red-500"
-            />
-          ) : (
-            <PnsByEducation data={filteredData} />
-          )}
-        </TabsContent>
-        <TabsContent value="visualisasi">
-          <Visualisasi />
-        </TabsContent>
-      </Tabs>
-
-      {/* Panggil modal terpisah */}
-      <InputModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+      
     </div>
   );
 };

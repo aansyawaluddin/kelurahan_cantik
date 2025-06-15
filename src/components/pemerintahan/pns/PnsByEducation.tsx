@@ -1,91 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { ITEMS_PER_PAGE, Pagination } from "@/components/ui/Pagination";
 
-type PnsRow = {
+export type PnsByEducationData = {
   tahun: number;
   tingkatPendidikan: string;
   lakilaki: number;
   perempuan: number;
   jumlah: number;
+  kecamatan: string;
+  kelurahan: string;
+  rw: string;
 };
 
-export const samplePnsData: PnsRow[] = [
-  {
-    tahun: 2024,
-    tingkatPendidikan: "SD/Sederajat",
-    lakilaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    tingkatPendidikan: "SMP/Sederajat",
-    lakilaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    tingkatPendidikan: "SMA/Sederajat",
-    lakilaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    tingkatPendidikan: "D3/Akademi",
-    lakilaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    tingkatPendidikan: "Strata 1",
-    lakilaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    tingkatPendidikan: "Strata 2",
-    lakilaki: 665,
-    perempuan: 702,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2024,
-    tingkatPendidikan: "Strata 3",
-    lakilaki: 702,
-    perempuan: 665,
-    jumlah: 1367,
-  },
-  {
-    tahun: 2025,
-    tingkatPendidikan: "SD/Sederajat",
-    lakilaki: 900,
-    perempuan: 782,
-    jumlah: 1682,
-  },
-  {
-    tahun: 2025,
-    tingkatPendidikan: "SMP/Sederajat",
-    lakilaki: 900,
-    perempuan: 782,
-    jumlah: 1682,
-  },
-  {
-    tahun: 2025,
-    tingkatPendidikan: "SMA/Sederajat",
-    lakilaki: 900,
-    perempuan: 782,
-    jumlah: 1682,
-  },
-];
-
-interface PnsByEducationTableProps {
-  data: PnsRow[];
+export interface PnsByEducationProps {
+  data: PnsByEducationData[];
 }
 
-export default function PnsByEducation({ data }: PnsByEducationTableProps) {
+export default function PnsByEducation({ data }: PnsByEducationProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+
+  const paginatedData = data.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
   return (
     <div className="mt-6 bg-white rounded-2xl shadow p-6 text-base">
       <h2 className="text-xl font-semibold text-center mb-4">
@@ -113,7 +52,7 @@ export default function PnsByEducation({ data }: PnsByEducationTableProps) {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, idx) => (
+            {paginatedData.map((row: PnsByEducationData, idx: number) => (
               <tr
                 key={idx}
                 className={idx % 2 === 0 ? "bg-white" : "bg-[#F9FBF5]"}
@@ -138,6 +77,12 @@ export default function PnsByEducation({ data }: PnsByEducationTableProps) {
           </tbody>
         </table>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={data.length}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }
