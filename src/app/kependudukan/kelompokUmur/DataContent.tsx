@@ -5,7 +5,7 @@ import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
 import KelompokUmurTable from "@/components/kependudukan/kelompokUmur/kelompokUmurTable";
-import { KelompokUmurRow, SampleUmurData } from "@/data/dashboard/kelompokUmurData";
+import { KelompokUmurRow, SampleUmurData } from "@/data/kelompokUmurData";
 import InputModal from "@/components/kependudukan/kelompokUmur/input";
 
 type Filter = {

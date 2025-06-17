@@ -1,5 +1,5 @@
 import React from "react";
-import { KelompokUmurRow } from "@/data/dashboard/kelompokUmurData";
+import { KelompokUmurRow } from "@/data/kelompokUmurData";
 
 // Definisikan interface props agar komponen bisa menerima data secara dinamis
 interface KelompokUmurTableProps {
