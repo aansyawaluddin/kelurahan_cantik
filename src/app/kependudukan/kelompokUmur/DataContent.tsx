@@ -6,6 +6,7 @@ import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
 import KelompokUmurTable from "@/components/kependudukan/kelompokUmur/kelompokUmurTable";
 import { KelompokUmurRow, SampleUmurData } from "@/data/dashboard/kelompokUmurData";
+import InputModal from "@/components/kependudukan/kelompokUmur/input";
 
 type Filter = {
   year: number | null;
@@ -23,6 +24,8 @@ const DataContent: React.FC = () => {
     rw: "Semua RW",
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleTabChange = (value: string) => {
     if (value === "data" || value === "visualisasi") {
       setActiveTab(value);
@@ -31,7 +34,7 @@ const DataContent: React.FC = () => {
 
   const handleFilterChange = (newFilters: Filter) => setFilters(newFilters);
   const handleExport = () => console.log("Export data kelompok umur:", filters);
-  const handleInput = () => {}; // Fungsi placeholder untuk input
+  const handleInput = () => setIsModalOpen(true);
 
   const filteredData: KelompokUmurRow[] = SampleUmurData.filter((d) =>
     filters.year ? d.tahun === filters.year : true
@@ -39,7 +42,8 @@ const DataContent: React.FC = () => {
 
   return (
     <div className="p-6 space-y-4">
-      <div className="flex justify-between items-center">
+      <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <div className="flex justify-between items-center">
         <Tabs value={activeTab} onValueChange={handleTabChange}>
           <TabsList>
             <TabsTrigger value="data">Data</TabsTrigger>
@@ -71,6 +75,8 @@ const DataContent: React.FC = () => {
           <VisualisasiPlaceholder />
         </TabsContent>
       </Tabs>
+      <InputModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+      </div>
     </div>
   );
 };
