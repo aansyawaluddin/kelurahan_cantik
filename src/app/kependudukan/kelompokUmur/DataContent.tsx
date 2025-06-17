@@ -4,10 +4,8 @@ import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
-import KelompokUmurTable, {
-  SampleUmurData,
-  KelompokUmurRow,
-} from "@/components/kependudukan/kelompokUmur/kelompokUmurTable";
+import KelompokUmurTable from "@/components/kependudukan/kelompokUmur/kelompokUmurTable";
+import { KelompokUmurRow, SampleUmurData } from "@/data/dashboard/kelompokUmurData";
 
 type Filter = {
   year: number | null;

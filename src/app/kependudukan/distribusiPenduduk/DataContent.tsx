@@ -4,10 +4,9 @@ import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
-import DistribusiTable, {
-  DistribusiRow,
-  sampelDistribusiData,
-} from "@/components/kependudukan/distribusiPenduduk/DistribusiTable";
+import { DistribusiRow } from "@/data/distribusiPendudukData";
+import DistribusiTable from "@/components/kependudukan/distribusiPenduduk/DistribusiTable";
+import { sampelDistribusiData } from "@/data/distribusiPendudukData";
 
 type Filter = {
   year: number | null;
