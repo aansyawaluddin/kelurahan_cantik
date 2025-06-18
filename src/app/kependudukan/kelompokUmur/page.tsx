@@ -8,7 +8,7 @@ export default function kelompokUmur() {
     return (
       <div className="flex h-screen bg-white">
         <Sidebar />
-        <div className="ml-64 flex-1 flex flex-col h-full p-6 space-y-6 overflow-y-scroll">
+        <div className="ml-64 flex-1 flex flex-col h-full space-y-6 overflow-y-scroll bg-gray-50">
           <Header />
           <DataContent />
         </div>

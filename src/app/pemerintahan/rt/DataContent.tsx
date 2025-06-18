@@ -4,7 +4,7 @@ import FilterControls from "@/components/ui/FilterControls";
 import DataToolbar from "@/components/ui/DataToolbar";
 import DataPlaceholder from "@/components/ui/DataPlaceholder";
 import VisualisasiPlaceholder from "@/components/ui/visualizationPlaceHolder";
-import { sampleRtData } from "@/data/data";
+import { sampleRtData } from "@/data/rtData";
 import RtByRwTable from "@/components/pemerintahan/rt/RtByRwTable";
 import InputModal from "@/components/pemerintahan/rt/input";
 

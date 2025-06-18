@@ -1,22 +1,10 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ResponsiveContainer, Treemap } from "recharts";
-
-const populationData = [
-  { name: "RW 01", value: 1177 },
-  { name: "RW 02", value: 626 },
-  { name: "RW 03", value: 639 },
-  { name: "RW 04", value: 672 },
-  { name: "RW 05", value: 1239 },
-  { name: "RW 06", value: 777 },
-  { name: "RW 07", value: 1221 },
-  { name: "RW 08", value: 1950 },
-  { name: "RW 09", value: 949 },
-  { name: "RW 10", value: 1134 },
-];
+import heatmapData from "@/data/dashboard/heatmapData";
 
 // Hitung sekali min & max
-const values = populationData.map((d) => d.value);
+const values = heatmapData.map((d) => d.value);
 const minValue = Math.min(...values);
 const maxValue = Math.max(...values);
 
@@ -90,7 +78,7 @@ export default function PopulationTreemap() {
         <CardContent>
           <ResponsiveContainer width="100%" height={315}>
             <Treemap
-              data={populationData}
+              data={heatmapData}
               dataKey="value"
               aspectRatio={4 / 3}
               stroke="#fff"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import YearPicker from "@/components/ui/yearPicker";
 import { Input } from "@/components/ui/input";
 import RwPicker from "@/components/ui/RwPicker";
-import { areaData } from "@/data/data";
+import { areaData } from "@/data/areaData";
 import {
   Popover,
   PopoverTrigger,

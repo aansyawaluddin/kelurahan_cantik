@@ -1,27 +1,25 @@
 import React from "react";
 import MetricCard from "./MetricCard";
+import rawMetricsData from "@/data/dashboard/metricCardsData";
 
 const cardsData = [
   {
     title: "Luas Wilayah",
     value: (
-      <>
-        <span className="text-[40px]">
-          1.180 m<sup>2</sup>
-        </span>
-      </>
+      <span className="text-[40px]">
+        {rawMetricsData.luasWilayah} m<sup>2</sup>
+      </span>
     ),
     gradient: `linear-gradient(to right, #1CA6A9 0%, #4DB9BB 25%, #A1D8DA 50%, #B0DEDF 75%, #E1F1F1 100%)`,
   },
   {
     title: "Pemerintahan",
-
     value: (
       <div className="flex flex-col">
         <span className="text-sm font-medium mb-1">Total</span>
         <div className="flex justify-between">
-          <span className="text-[20px]">10 RW</span>
-          <span className="text-[20px]">57 RT</span>
+          <span className="text-[20px]">{rawMetricsData.pemerintahan.rw} RW</span>
+          <span className="text-[20px]">{rawMetricsData.pemerintahan.rt} RT</span>
         </div>
       </div>
     ),
@@ -33,7 +31,7 @@ const cardsData = [
       <div className="flex flex-col">
         <span className="text-sm font-medium mb-1">Total Penduduk</span>
         <div>
-          <span className="text-[20px]">19.053</span>
+          <span className="text-[20px]">{rawMetricsData.kependudukan.toLocaleString()}</span>
         </div>
       </div>
     ),
@@ -43,11 +41,9 @@ const cardsData = [
     title: "Pendidikan",
     value: (
       <div className="flex flex-col">
-        <span className="text-sm font-medium mb-1">
-          Total Fasilitas Sekolah
-        </span>
+        <span className="text-sm font-medium mb-1">Total Fasilitas Sekolah</span>
         <div>
-          <span className="text-[20px]">35</span>
+          <span className="text-[20px]">{rawMetricsData.pendidikan}</span>
         </div>
       </div>
     ),
@@ -57,11 +53,9 @@ const cardsData = [
     title: "Kesehatan",
     value: (
       <div className="flex flex-col">
-        <span className="text-sm font-medium mb-1">
-          Total Fasilitas Kesehatan
-        </span>
+        <span className="text-sm font-medium mb-1">Total Fasilitas Kesehatan</span>
         <div>
-          <span className="text-[20px]">6</span>
+          <span className="text-[20px]">{rawMetricsData.kesehatan}</span>
         </div>
       </div>
     ),

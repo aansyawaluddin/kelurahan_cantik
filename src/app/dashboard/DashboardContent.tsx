@@ -16,15 +16,17 @@ const DashboardContent: React.FC = () => {
   };
 
   return (
-    <div className=" p-4 space-y-6 border h-full rounded-lg border-gray-200">
-      <h1 className="text-2xl font-semibold text-black">Selamat Datang!</h1>
-      <FilterControls onFilterChange={handleFilterChange} />
-      <MetricCards />
-      <PopulationDensity />
+    <div className="bg-gray-50 p-6 space-y-6 h-full">
+      <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <h1 className="text-2xl font-semibold text-black">Selamat Datang!</h1>
+        <FilterControls onFilterChange={handleFilterChange} />
+        <MetricCards />
+        <PopulationDensity />
 
-      <div className="flex justify-around w-full">
-        <SchoolFacilitiesChart />
-        <Heatmap />
+        <div className="flex justify-around w-full">
+          <SchoolFacilitiesChart />
+          <Heatmap />
+        </div>
       </div>
     </div>
   );
