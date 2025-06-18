@@ -110,5 +110,15 @@ export const sampelDistribusiData: DistribusiRow[] = [
     persenKepadatan: 17678.46,
     rasioJenisKelamin: 104.6,
   },
+  {
+    tahun: 2024,
+    rw: "RW 11",
+    lakiLaki: 800,
+    perempuan: 820,
+    jumlah: 1620,
+    persenPenduduk: 8.5,
+    persenKepadatan: 16500.00,
+    rasioJenisKelamin: 97.6,
+  },
   // Tambahkan entri lain sesuai kebutuhan
 ];

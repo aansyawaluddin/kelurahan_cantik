@@ -1,5 +1,6 @@
 import React from "react";
-
+import { useState } from "react";
+import { Pagination, ITEMS_PER_PAGE } from "@/components/ui/Pagination";
 import { DistribusiRow } from "@/data/distribusiPendudukData";
 
 type Props = {
@@ -7,6 +8,14 @@ type Props = {
 };
 
 const DistribusiTable: React.FC<Props> = ({ data }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+  
+  const paginatedData = data.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
   return (
     <div className="mt-6 bg-white rounded-2xl shadow p-6 text-base">
       <h2 className="text-xl font-semibold text-center mb-4">
@@ -54,7 +63,7 @@ const DistribusiTable: React.FC<Props> = ({ data }) => {
           </thead>
 
           <tbody>
-            {data.map((row, idx) => (
+            {paginatedData.map((row, idx) => (
               <tr
                 key={idx}
                 className={idx % 2 === 0 ? "bg-white" : "bg-[#F9FBF5]"}
@@ -80,6 +89,12 @@ const DistribusiTable: React.FC<Props> = ({ data }) => {
           </tbody>
         </table>
       </div>
+      <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={data.length}
+              onPageChange={setCurrentPage}
+      />
     </div>
   );
 };

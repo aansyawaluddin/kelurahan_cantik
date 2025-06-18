@@ -77,4 +77,11 @@ export const SampleUmurData: KelompokUmurRow[] = [
     perempuan: 665,
     jumlah: 1367,
   },
+  {
+    tahun: 2025,
+    kelompokUmur: "45-49",
+    lakiLaki: 723,
+    perempuan: 665,
+    jumlah: 1388,
+  },
 ];
